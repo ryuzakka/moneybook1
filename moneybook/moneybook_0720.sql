@@ -32,8 +32,10 @@ CREATE TABLE `lunch` (
   `addr2` varchar(100) DEFAULT NULL,
   `readnum` int(11) DEFAULT 0,
   `writeday` date DEFAULT NULL,
+  `lat` char(20) DEFAULT NULL,
+  `lng` char(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +44,7 @@ CREATE TABLE `lunch` (
 
 LOCK TABLES `lunch` WRITE;
 /*!40000 ALTER TABLE `lunch` DISABLE KEYS */;
-INSERT INTO `lunch` VALUES (1,'김가네','김밥, 덮밥, 볶음밥, 분식','류동헌','10414','경기 고양시 일산동구 중앙로 1195','1층, 101B호',0,'2022-07-20'),(2,'김밥천국','김밥, 덮밥, 볶음밥, 분식','류동헌','10414','경기 고양시 일산동구 장백로 184','1층',0,'2022-07-20'),(3,'맥도날드','햄버거, 감자튀김, 아이스크림','김규호','10414','경기 고양시 일산동구 중앙로 1190','서울타워 1층',0,'2022-07-20'),(4,'','','','','','',0,'2022-07-20');
+INSERT INTO `lunch` VALUES (1,'김가네','김밥, 덮밥, 볶음밥, 분식','류동헌','10414','경기 고양시 일산동구 중앙로 1195','1층, 101B호',0,'2022-07-20',NULL,NULL),(2,'김밥천국','김밥, 덮밥, 볶음밥, 분식','류동헌','10414','경기 고양시 일산동구 장백로 184','1층',0,'2022-07-20',NULL,NULL),(3,'맥도날드','햄버거, 감자튀김, 아이스크림','김규호','10414','경기 고양시 일산동구 중앙로 1190','서울타워 1층',0,'2022-07-20',NULL,NULL),(5,'버거킹','햄버거','류동헌','10414','경기 고양시 일산동구 장백로 194','1,2층',0,'2022-07-20','37.6520876291657','126.776668348232');
 /*!40000 ALTER TABLE `lunch` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-20 17:45:09
+-- Dump completed on 2022-07-20 19:17:32
