@@ -91,13 +91,13 @@
 
 
 <div id="section">
-	<form name="lunchInput" method="post" action="write_ok.jsp">
-		<h2>맛집 등록</h2>
+<form name="lunchInput" method="post" action="write_ok.jsp">
+	<h2>맛집 등록</h2>
 	<table width="700" border="1" align="center">
-		<tr>
+		<!-- <tr>
 			<td> 작성자 </td>
 			<td> <input type="text" name="regname" size="13" required> </td>
-		</tr>
+		</tr> -->
 		<tr>
 			<td> 식당이름 </td>
 			<td> <input type="text" name="title" size="30" required> </td>
@@ -125,7 +125,7 @@
 	</table>
 	<p><input type="submit" value="등록"></p>
 	<a href="list.jsp"><input type="button" value="목록으로"></a>
-	</form>
+</form>
 </div>
 
 

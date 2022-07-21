@@ -60,13 +60,7 @@ body {
 	margin:auto;
 	background:#E0FFFF;
 }
-/* #third > #box { 
-	background-image: url('../img/main.jpg');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center;
-	background-size: cover;
-} */
+
 #fourth {
 	width:1100px;
 	height:130px;
@@ -82,21 +76,30 @@ body {
 }
 #fifth {
 	width:1100px;
-	height:150px;
+	height:200px;
 	margin:auto;
 	margin-top:50px;
+}
+#fifth .place {
+	width:183px;
+	height:128px;
+	border:1px solid pink;
+	display:inline-grid;
+	padding:10px 15px;
 	background:#F5F5F5;
 }
-#fifth > div {
-	width:213px;
-	height:150px;
-	border:1px solid pink;
-	display:inline-block;
-}
+#fifth .place .placeTitle {font-size:18px;}
+#fifth .place .placeMenu {font-size:12px;}
+#fifth .place .placeAddr {font-size:10px;}
+#fifth .place .placeRegname {font-size:13px;}
 #sixth {
 	width:1100px;
-	height:100px;
+	height:130px;
 	margin:auto;
 	margin-top:40px;
 	background:#F5FFFA;
+}
+#sixth table {
+	padding-top:20px;
+	font-size:12px;
 }

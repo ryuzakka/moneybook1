@@ -16,6 +16,9 @@
 		margin-top:80px;
 		text-align:center;
 	}
+	#section table tr:first-child {
+		text-align:center;
+	}
 </style>
 <script>
 	var chk;
@@ -67,13 +70,13 @@
 <div id="section">
 	
 	<h2> 맛집 추천 리스트 </h2>
-	<p><a href="write.jsp"><input type="button" value="메뉴 추가"></a></p>
+	<c:if test="${userid != null}"><p><a href="write.jsp"><input type="button" value="내가 아는 맛집 !"></a></p></c:if>
 	<table width="1000" align="center" border="1">
 		<tr>
-			<td> 이 름 </td>
-			<td> 주메뉴 </td>
-			<td> 주 소 </td>
-			<td> 작성자 </td>
+			<td width="150"><strong>이 름</strong></td>
+			<td width="200"><strong>주메뉴</strong></td>
+			<td width="530"><strong>주 소</strong><br><span style="font-size:13px;color:tomato;"> 지도보기는 2번 클릭하셔야 정확합니다.</span> </td>
+			<td width="120"><strong>작성자</strong></td>
 		</tr>
 		<c:forEach items="${list}" var="lunch" varStatus="status">
 		<tr>
@@ -82,7 +85,7 @@
 			<td>
 				${lunch.addr1} ${lunch.addr2}
 				<input type="button" value="지도보기" onclick="openMap('${lunch.addr1}','${lunch.lat}','${lunch.lng}',${status.index})"><br>
-				<div class="map" style="width:600px;height:200px;margin-top:10px;display:none"></div>
+				<div class="map" style="width:500px;height:200px;margin-top:10px;display:none"></div>
 			</td>
 			<td> ${lunch.regname} </td>
 		</tr>

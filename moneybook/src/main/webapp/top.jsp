@@ -17,13 +17,13 @@
 		}
 	</script>
 </head>
-<body onload="getDay()">
+<body>
 
 	<div id="first"> <span id="today"></span>오늘은 무엇을 먹을까요~?<span id="closeBtn"></span></div>
 	<div id="second">
 		<div id="left">
 			<a href="../main/index.jsp"><img src="../img/logo.png" width="35px"></a>
-			Moneybook
+			Madu-Java-Class
 		</div>
 		<div id="right">
 			<ul class="menu">
@@ -46,11 +46,11 @@
 						<div>회원서비스</div>
 						<ul class="sub">
 							<li><a href="../member/login.jsp">로그인</a></li>
-							<li><a href="../member/member_input.jsp">회원가입</a></li>
+							<li><a href="../member/signup.jsp">회원가입</a></li>
 						</ul>
 					</c:if>
 					<c:if test="${userid != null}">
-						<div>${username}님</div>
+						<div>${name} 님</div>
 						<ul class="sub">
 							<li><a href="../member/member_info.jsp">회원정보</a></li>
 							<li><a href="../member/logout.jsp">로그아웃</a></li>

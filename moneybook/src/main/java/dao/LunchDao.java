@@ -20,7 +20,7 @@ public class LunchDao {
 	public LunchDao() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		String db = "jdbc:mysql://localhost:3306/moneybook";
-		conn = DriverManager.getConnection(db, "root", "5032");
+		conn = DriverManager.getConnection(db, "root", "1234");
 	}
 	
 	public void close() throws Exception {
@@ -34,7 +34,7 @@ public class LunchDao {
 		sql += "(regname, title, menu, zip, addr1, addr2, writeday, lat, lng) ";
 		sql += "values(?,?,?,?,?,?,now(),?,?)";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, request.getParameter("regname"));
+		pstmt.setString(1, session.getAttribute("name").toString());
 		pstmt.setString(2, request.getParameter("title"));
 		pstmt.setString(3, request.getParameter("menu"));
 		pstmt.setString(4, request.getParameter("zip"));
@@ -51,6 +51,37 @@ public class LunchDao {
 	public void list(HttpServletRequest request) throws Exception {
 		
 		String sql = "select * from lunch order by id desc";
+		pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		
+		ArrayList<LunchDto> list = new ArrayList<LunchDto>();
+		
+		while(rs.next()) {
+			LunchDto dto = new LunchDto();
+			dto.setId(rs.getInt("id"));
+			dto.setTitle(rs.getString("title"));
+			dto.setMenu(rs.getString("menu"));
+			dto.setRegname(rs.getString("regname"));
+			dto.setZip(rs.getString("zip"));
+			dto.setAddr1(rs.getString("addr1"));
+			dto.setAddr2(rs.getString("addr2"));
+			dto.setReadnum(rs.getInt("readnum"));
+			dto.setWriteday(rs.getString("writeday"));
+			dto.setLat(rs.getString("lat"));
+			dto.setLng(rs.getString("lng"));
+			
+			list.add(dto);
+		}
+		
+		request.setAttribute("list", list);
+		
+		rs.close();
+		close();
+	}
+	
+	public void mainList(HttpServletRequest request) throws Exception {
+		
+		String sql = "select * from lunch order by id desc limit 0,5";
 		pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
 		
