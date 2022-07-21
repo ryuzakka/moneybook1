@@ -6,7 +6,6 @@
 	LunchDao dao = new LunchDao();
 	dao.list(request);
 %>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70a5855d29c102d6c8f57bfa08052026&libraries=services"></script>
 <c:import url="../top.jsp" />
 <style>
 	#section {
@@ -17,15 +16,16 @@
 		text-align:center;
 	}
 </style>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70a5855d29c102d6c8f57bfa08052026&libraries=services"></script>
 <script>
 	var chk;
-	//좌표값을 지도에 표시하기
+	// 좌표값을 지도에 표시하기
 	function openMap(addr, lat, lng, n, last) {
 		
 		var mapContainer = document.getElementsByClassName('map')[n], // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(lat, lng), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
+		        level: 5 // 지도의 확대 레벨
 		    };
 		
 		// 지도를 생성합니다    
@@ -63,10 +63,11 @@
 		});
 		chk = n;
 	}
+	
 </script>
 <div id="section">
 	
-	<h2> 맛집 추천 리스트 </h2>
+	<h2> 메뉴 리스트 </h2>
 	<p><a href="write.jsp"><input type="button" value="메뉴 추가"></a></p>
 	<table width="1000" align="center" border="1">
 		<tr>
@@ -76,13 +77,15 @@
 			<td> 작성자 </td>
 		</tr>
 		<c:forEach items="${list}" var="lunch" varStatus="status">
+			<%-- <c:out value="${status.last}" /> --%>
 		<tr>
-			<td><a href="readnum.jsp?id=${lunch.id}">${lunch.title}</a></td>
+			<td><a href="">${lunch.title}</a></td>
 			<td> ${lunch.menu} </td>
 			<td>
 				${lunch.addr1} ${lunch.addr2}
-				<input type="button" value="지도보기" onclick="openMap('${lunch.addr1}','${lunch.lat}','${lunch.lng}',${status.index})"><br>
-				<div class="map" style="width:600px;height:200px;margin-top:10px;display:none"></div>
+				<input type="button" value="지도보기" onclick="openMap('${lunch.addr1}','${lunch.lat}','${lunch.lng}',${status.index}, ${status.last})">
+				<br>
+				<div class="map" style="width:300px;height:200px;margin-top:10px;display:none"></div>
 			</td>
 			<td> ${lunch.regname} </td>
 		</tr>
@@ -94,5 +97,5 @@
 
 </div>
 
-</body>
-</html>
+
+<c:import url="../bottom.jsp" />

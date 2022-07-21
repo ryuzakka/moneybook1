@@ -28,7 +28,7 @@
 		<div id="right">
 			<ul class="menu">
 				<li id="menu">
-					<div>점심리스트</div>
+					<div><a href="../lunch/list.jsp">맛집리스트</a></div>
 				</li>
 				<li id="menu">
 					<div>나의소비</div>

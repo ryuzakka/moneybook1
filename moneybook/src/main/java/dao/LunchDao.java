@@ -79,8 +79,78 @@ public class LunchDao {
 		close();
 	}
 	
+	public void readnum(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		String sql = "update lunch set readnum = readnum+1 where id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.executeUpdate();
+		
+		close();
+		response.sendRedirect("content.jsp?id=" + id);
+	}
 	
+	public void content(HttpServletRequest request) throws Exception {
+		
+		String sql = "select * from lunch where id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, request.getParameter("id"));
+		ResultSet rs = pstmt.executeQuery();
+		
+		if(rs.next()) {
+			LunchDto dt = new LunchDto();
+			dt.setId(rs.getInt("id"));
+			dt.setTitle(rs.getString("title"));
+			dt.setMenu(rs.getString("menu"));
+			dt.setRegname(rs.getString("regname"));
+			dt.setReadnum(rs.getInt("readnum"));
+			dt.setWriteday(rs.getString("writeday"));
+			dt.setZip(rs.getString("zip"));
+			dt.setAddr1(rs.getString("addr1"));
+			dt.setAddr2(rs.getString("addr2"));
+			dt.setLat(rs.getString("lat"));
+			dt.setLng(rs.getString("lng"));
+			
+			request.setAttribute("lunch", dt);
+		}
+		
+		rs.close();
+		close();
+	}
 	
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String id = request.getParameter("id");
+		String sql = "delete from lunch where id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		pstmt.executeUpdate();
+		
+		close();
+		response.sendRedirect("list.jsp");
+	}
+	
+	public void update(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String id = request.getParameter("id");
+		String sql = "update lunch set ";
+		sql += "title=?, menu=?, regname=?, ";
+		sql += "zip=?, addr1=?, addr2=?, lat=?, lng=?, ";
+		sql += "writeday=now() where id=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, request.getParameter("title"));
+		pstmt.setString(2, request.getParameter("menu"));
+		pstmt.setString(3, request.getParameter("regname"));
+		pstmt.setString(4, request.getParameter("zip"));
+		pstmt.setString(5, request.getParameter("addr1"));
+		pstmt.setString(6, request.getParameter("addr2"));
+		pstmt.setString(7, request.getParameter("lat"));
+		pstmt.setString(8, request.getParameter("lng"));
+		pstmt.setString(9, id);
+		pstmt.executeUpdate();
+		
+		close();
+		response.sendRedirect("content.jsp?id="+id);
+	}
 	
 	
 	
