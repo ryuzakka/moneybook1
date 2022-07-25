@@ -9,7 +9,7 @@
 <style>
 	#section {
 		width:1100px;
-		height:550px;
+		height:auto;
 		margin:auto;
 		margin-top:70px;
 		text-align:center;
@@ -65,17 +65,17 @@
 		<tr>
 			<td> 아이디* </td>
 			<td>
-				<input type="text" name="userid" onkeyup="useridCharacterCheck(this)" onblur="userid_check(this)" required><br>
+				<input type="text" name="userid" placeholder="한글은 안되요~" onkeyup="useridCharacterCheck(this)" onblur="userid_check(this)" required><br>
 				<div id="idError" style="color:tomato;font-size:12px;visibility:hidden"></div>
 			</td>
 		</tr>
 		<tr>
 			<td> 닉네임* </td>
 			<td>
-				<input type="text" name="name" required><br>
-				<div style="color:tomato;font-size:12px;">
-					<strong>실명은 사용하지 않으셔도 됩니다 !</strong>
-					닉네임은 게시판에서 활용됩니다.
+				<input type="text" name="name" placeholder="실명은 사용하지 않으셔도 됩니다 !" required><br>
+				<div style="font-size:12px;">
+					<!-- <strong style="color:tomato;"></strong> -->
+					<span style="color:mediumblue;">닉네임은 게시판에서 활용됩니다.</span>
 				</div>
 			</td>
 		</tr>
@@ -90,6 +90,13 @@
 			<td>
 				<input type="password" name="pwd2" onkeyup="pwd_check(this)" required><br>
 				<div id="pwdError" style="color:tomato;font-size:12px;visibility:hidden"></div>
+			</td>
+		</tr>
+		<tr>
+			<td> 연락처 </td>
+			<td>
+				<input type="text" name="phone" placeholder="연락처는 ID/PW 찾을 때 사용됩니다." onkeyup="phone_check(this)" onblur="phone_lenCheck(this)">
+				<div><strong id="phoneError" style="color:red;font-size:12px;"></strong></div>
 			</td>
 		</tr>
 		<tr>

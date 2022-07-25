@@ -7,7 +7,9 @@
 	ldao.mainList(request);
 %>
 <style>
-	
+	#fifth .place {
+		cursor:pointer;
+	}
 </style>
 <c:import url="../top.jsp" />
 <div id="section">
@@ -16,9 +18,9 @@
 	</div>
 	
 	<div id="fifth">
-		<h3 align="center" style="padding-left:90px;">최신 맛집 <a href="../lunch/list.jsp"><input type="button" value="맛집 더보기"></a></h3>
+		<h3 align="center" style="padding-left:90px;">최근에 등록된 맛집 <a href="../lunch/list.jsp"><input type="button" value="맛집 더보기"></a></h3>
 		<c:forEach items="${list}" var="place">
-			<div class="place">
+			<div class="place" onclick="javascript:location='../lunch/readnum.jsp?id=${place.id}'">
 				<div class="placeTitle">${place.title}</div>
 				<div class="placeMenu">${place.menu}</div>
 				<div class="placeAddr">${place.addr1}</div>

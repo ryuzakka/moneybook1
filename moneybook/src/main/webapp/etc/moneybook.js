@@ -58,6 +58,23 @@ function pwd_check(passwd) {
 	if(pwd.trim() == "")	pwdcheck=0;
 }
 
+// member_input.jsp => 회원가입 때 전화번호 숫자만 입력하도록
+function phone_check(my) {
+	my.value = my.value.replace(/[^0-9]/g, "");
+	
+	if(my.value.length > 8)
+		phonecheck = 1;
+	else
+		phonecheck = 0;
+}
+function phone_lenCheck(my) {
+	if(my.value.length < 10) {
+		document.getElementById('phoneError').innerText = "연락처 길이가 짧습니다.";
+	} else {		
+		document.getElementById('phoneError').innerText = "";
+	}
+}
+
 // member_input.jsp => 가입하기 버튼(submit) 클릭 시 최종 확인
 function final_check(my) {
 	if(idcheck == 0) {

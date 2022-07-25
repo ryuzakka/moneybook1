@@ -2,10 +2,16 @@ package dto;
 
 public class MemberDto {
 	
-	int id, state;
-	String userid, name, pwd, blog, sns, writeday;
+	private int id, state;
+	private String userid, name, pwd, blog, sns, writeday, phone;
 	
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public int getId() {
 		return id;
 	}

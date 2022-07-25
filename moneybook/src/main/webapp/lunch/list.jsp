@@ -2,22 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="dao.LunchDao" %>
+<%@ page import="dao.GongjiDao" %>
+<%@ page import="dao.CommentDao" %>
 <%
-	LunchDao dao = new LunchDao();
-	dao.list(request);
+	LunchDao ldao = new LunchDao();
+	ldao.list(request);
+	GongjiDao gdao = new GongjiDao();
+	gdao.notice(request);
+	CommentDao cdao = new CommentDao();
+	cdao.commentCount(request);
 %>
+<!-- lunch/list.jsp -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=70a5855d29c102d6c8f57bfa08052026&libraries=services"></script>
 <c:import url="../top.jsp" />
 <style>
 	#section {
 		width:1100px;
-		height:400px;
+		height:auto;
 		margin:auto;
-		margin-top:80px;
+		margin-top:20px;
 		text-align:center;
 	}
 	#section table tr:first-child {
 		text-align:center;
+	}
+	#section h1 {
+		margin:50px 0px 35px 0px;
 	}
 </style>
 <script>
@@ -69,18 +79,38 @@
 </script>
 <div id="section">
 	
-	<h2> 맛집 추천 리스트 </h2>
-	<c:if test="${userid != null}"><p><a href="write.jsp"><input type="button" value="내가 아는 맛집 !"></a></p></c:if>
+	<%-- <div id="noti">
+		<div id="notiTitle" align="center">알립니다.</div>
+		<table width="400" align="center" border="0">
+			<c:forEach items="${notice}" var="noti">
+				<tr><td><a href="../gongji/content.jsp?id=${noti.id}">${noti.title}</a></td></tr>
+			</c:forEach>
+		</table>
+	</div>
+	<hr> --%>
+	<h1> 내가 아는 맛집을 추천 해주세요! </h1>
+	<c:if test="${userid != null}"><p><a href="write.jsp"><input type="button" value="내가 아는 맛집 추가하기"></a></p></c:if>
 	<table width="1000" align="center" border="1">
 		<tr>
 			<td width="150"><strong>이 름</strong></td>
+			<td></td>
 			<td width="200"><strong>주메뉴</strong></td>
 			<td width="530"><strong>주 소</strong><br><span style="font-size:13px;color:tomato;"> 지도보기는 2번 클릭하셔야 정확합니다.</span> </td>
 			<td width="120"><strong>작성자</strong></td>
 		</tr>
+		
+		
+		
 		<c:forEach items="${list}" var="lunch" varStatus="status">
 		<tr>
 			<td><a href="readnum.jsp?id=${lunch.id}">${lunch.title}</a></td>
+			<td width="20" align="center">
+				<c:forEach items="${cmmt}" var="dat">
+					<c:set var="bid" value="${dat.bid}" />
+					<c:set var="cnt" value="${dat.cnt}" />
+					<c:if test="${lunch.id == bid}"><span>[${cnt}]</span></c:if>
+				</c:forEach>
+			</td>
 			<td> ${lunch.menu} </td>
 			<td>
 				${lunch.addr1} ${lunch.addr2}
@@ -97,5 +127,4 @@
 
 </div>
 
-</body>
-</html>
+<%-- <c:import url="../bottom.jsp" /> --%>

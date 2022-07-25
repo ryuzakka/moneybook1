@@ -20,7 +20,7 @@ public class LunchDao {
 	public LunchDao() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		String db = "jdbc:mysql://localhost:3306/moneybook";
-		conn = DriverManager.getConnection(db, "root", "1234");
+		conn = DriverManager.getConnection(db, "root", "5032");
 	}
 	
 	public void close() throws Exception {

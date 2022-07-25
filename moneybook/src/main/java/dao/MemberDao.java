@@ -20,7 +20,7 @@ public class MemberDao {
 	public MemberDao() throws Exception {
 		Class.forName("com.mysql.jdbc.Driver");
 		String db = "jdbc:mysql://localhost:3306/moneybook";
-		conn = DriverManager.getConnection(db, "root", "1234");
+		conn = DriverManager.getConnection(db, "root", "5032");
 	}
 	
 	public void close() throws Exception {
@@ -32,14 +32,16 @@ public class MemberDao {
 	public void signup(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String sql = "insert into member";
-		sql += "(userid,name,pwd,blog,sns,writeday)";
-		sql += "values(?,?,?,?,?,now())";
+		sql += "(userid,name,pwd,blog,sns,writeday,phone)";
+		sql += "values(?,?,?,?,?,now(),?)";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, request.getParameter("userid"));
 		pstmt.setString(2, request.getParameter("name"));
 		pstmt.setString(3, request.getParameter("pwd"));
 		pstmt.setString(4, request.getParameter("blog"));
 		pstmt.setString(5, request.getParameter("sns"));
+		pstmt.setString(6, request.getParameter("phone"));
+		
 		pstmt.executeUpdate();
 		
 		close();
@@ -103,6 +105,7 @@ public class MemberDao {
 		dto.setBlog(rs.getString("blog"));
 		dto.setSns(rs.getString("sns"));
 		dto.setState(rs.getInt("state"));
+		dto.setPhone(rs.getString("phone"));
 		
 		request.setAttribute("member", dto);
 		rs.close();
@@ -156,11 +159,12 @@ public class MemberDao {
 		String pwd = request.getParameter("pwd");
 		if(pwdCheck(userid, pwd)) {
 			String sql = "update member set ";
-			sql += "blog=?, sns=? where id=?";
+			sql += "blog=?, sns=?, phone=? where id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, request.getParameter("blog"));
 			pstmt.setString(2, request.getParameter("sns"));
-			pstmt.setString(3, request.getParameter("id"));
+			pstmt.setString(3, request.getParameter("phone"));
+			pstmt.setString(4, request.getParameter("id"));
 			pstmt.executeUpdate();
 			
 			close();
@@ -171,7 +175,50 @@ public class MemberDao {
 		}
 	}
 	
+	// member_find.jsp => ID찾기
+	public void useridSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		String sql = "select userid from member where name=? and phone=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, request.getParameter("name"));
+		pstmt.setString(2, request.getParameter("phone"));
+		ResultSet rs = pstmt.executeQuery();
+		//System.out.println(pstmt.toString());
+		if(rs.next()) {
+			String id = rs.getString("userid");
+			rs.close();
+			close();
+			response.sendRedirect("member_find.jsp?idchk=1&userid=" + id);
+		} else {
+			rs.close();
+			close();
+			response.sendRedirect("member_find.jsp?idchk=0");			
+		}
+	}
 	
+	// member_find.jsp => PW찾기
+	public void pwdSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		String sql = "select pwd from member where userid=? and name=? and phone=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, request.getParameter("userid"));
+		pstmt.setString(2, request.getParameter("name"));
+		pstmt.setString(3, request.getParameter("phone"));
+		ResultSet rs = pstmt.executeQuery();
+		//System.out.println(pstmt.toString());
+		
+		if(rs.next()) {
+			String pwd = rs.getString("pwd");
+			rs.close();
+			close();
+			response.sendRedirect("member_find.jsp?pwdchk=1&pwd=" + pwd);
+		} else {
+			rs.close();
+			close();
+			response.sendRedirect("member_find.jsp?pwdchk=0");
+		}
+		
+	}
 	
 	
 	

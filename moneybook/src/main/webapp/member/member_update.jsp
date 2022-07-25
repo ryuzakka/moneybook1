@@ -37,6 +37,13 @@
 			<input type="hidden" name="name" value="${member.name}">
 		</tr>
 		<tr>
+			<td> 연락처 </td>
+			<td>
+				<input type="text" name="phone" value="${member.phone}" placeholder="연락처는 ID/PW 찾을 때 사용됩니다." onkeyup="phone_check(this)" onblur="phone_lenCheck(this)"><br>
+				<strong id="phoneError" style="color:red;font-size:12px"></strong>
+			</td>
+		</tr>
+		<tr>
 			<td> 블로그 </td>
 			<td>
 				<input type="text" name="email" value="${member.blog}"><br>
@@ -45,7 +52,7 @@
 		<tr>
 			<td> SNS </td>
 			<td>
-				<input type="text" name="phone" value="${member.sns}"><br>
+				<input type="text" name="sns" value="${member.sns}"><br>
 			</td>
 		</tr>
 	</table>

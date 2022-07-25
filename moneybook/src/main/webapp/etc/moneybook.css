@@ -34,7 +34,7 @@ body {
 	/* 메뉴 리스트 */
 	list-style-type:none;
 	display:inline-block;
-	width:160px;
+	width:200px;
 }
 #second #right > .menu #menu {
 	position:relative;

@@ -32,6 +32,10 @@
 			<td>${member.name}</td>
 		</tr>
 		<tr>
+			<td> 연락처 </td>
+			<td>${member.phone}</td>
+		</tr>
+		<tr>
 			<td> 블로그 </td>
 			<td>${member.blog}</td>
 		</tr>

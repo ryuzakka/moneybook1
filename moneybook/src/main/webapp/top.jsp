@@ -16,6 +16,14 @@
 			document.getElementsByClassName('sub')[n].style.visibility = "hidden";
 		}
 	</script>
+	<style>
+		#noti {
+			margin:10px 0px;
+		}
+		#noti table tr {
+			text-align:center;
+		}
+	</style>
 </head>
 <body>
 
@@ -36,8 +44,8 @@
 				<li id="menu" onmouseover="view(0)" onmouseout="hide(0)">
 					<div>커뮤니티</div>
 					<ul class="sub">
-						<li> 공지사항 </li>
-						<li> 식당후기 </li>
+						<li><a href="../gongji/list.jsp">공지사항</a></li>
+						<li> 문의하기 </li>
 					</ul>
 				</li>
 				
@@ -60,3 +68,13 @@
 			</ul>
 		</div>
 	</div>
+	<div id="noti">
+		<div id="notiTitle" align="center">알립니다.</div>
+		<table width="400" align="center" border="0">
+			<c:forEach items="${notice}" var="noti">
+				<tr><td><a href="../gongji/content.jsp?id=${noti.id}">${noti.title}</a></td></tr>
+			</c:forEach>
+		</table>
+	</div>
+	<hr>
+	
