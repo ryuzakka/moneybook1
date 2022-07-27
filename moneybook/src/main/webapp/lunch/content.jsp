@@ -22,6 +22,18 @@
 	#section #cmmtList {
 		margin-top:30px;
 	}
+	#section #cmmtList table {
+		border-spacing:0px;
+	}
+	#section #cmmtList table tr td {
+		padding:5px 0px 5px 10px;
+	}
+	#section #cmmtHeader td {
+		font-weight:bold;
+		font-size:16px;
+		text-align:center;
+		border-bottom:1px solid grey;
+	}
 	#section #cmmtUpd {
 		margin-top:30px;
 	}
@@ -147,9 +159,9 @@
 	
 	<div id="cmmtList">
 		<table width="700" align="center" border="0">
-			<tr>
-				<td width="90"> 닉네임 </td>
-				<td width="450"> 내 용 </td>
+			<tr id="cmmtHeader">
+				<td width="120"> 닉네임 </td>
+				<td width="420"> 내 용 </td>
 				<td width="100"> 작성일 </td>
 				<td width="60" colspan="2"></td>
 			</tr>

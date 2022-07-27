@@ -209,6 +209,23 @@ public class QnaDao {
 		response.sendRedirect("content.jsp?id="+id);
 	}
 	
+	public void rewrite_form(HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		int id = Integer.parseInt(request.getParameter("id"));
+		int grp = Integer.parseInt(request.getParameter("grp"));
+		int depth = Integer.parseInt(request.getParameter("depth"));
+		int seq = Integer.parseInt(request.getParameter("seq"));
+		
+		QnaDto dto = new QnaDto();
+		dto.setId(id);
+		dto.setTitle(request.getParameter("title"));
+		dto.setGrp(grp);
+		dto.setDepth(depth);
+		dto.setSeq(seq);
+		
+		request.setAttribute("reply", dto);
+	}
+	
 	public void rewrite(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");

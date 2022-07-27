@@ -46,7 +46,7 @@
 		<tr>
 			<td> 블로그 </td>
 			<td>
-				<input type="text" name="email" value="${member.blog}"><br>
+				<input type="text" name="blog" value="${member.blog}"><br>
 			</td>
 		</tr>
 		<tr>

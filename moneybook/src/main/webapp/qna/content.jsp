@@ -15,6 +15,11 @@
 		margin-top:80px;
 		text-align:center;
 	}
+	#section table tr td:nth-child(2) {
+		text-align:left;
+		padding:10px;
+	}
+	
 </style>
 <script>
 	function pwdCheck() {
@@ -63,7 +68,7 @@
 	<c:if test="${userid == 'admin'}">
 		<form method="post" action="rewrite.jsp">
 			<input type="hidden" name="id" value="${content.id}">
-			<input type="hidden" name="content" value="${content.title}">
+			<input type="hidden" name="title" value="${content.title}">
 			<input type="hidden" name="grp" value="${content.grp}">
 			<input type="hidden" name="depth" value="${content.depth}">
 			<input type="hidden" name="seq" value="${content.seq}">

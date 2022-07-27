@@ -168,7 +168,7 @@ public class MemberDao {
 			pstmt.executeUpdate();
 			
 			close();
-			response.sendRedirect("../main/index.jsp");
+			response.sendRedirect("member_info.jsp");
 		} else {
 			close();
 			response.sendRedirect("member_update.jsp?chk=1");

@@ -16,6 +16,12 @@
 		margin-top:80px;
 		text-align:center;
 	}
+	#section table {
+		border-spacing:0px;
+	}
+	#section table tr td {
+		padding:7px;
+	}
 </style>
 <div id="section">
 	<h2> 공지사항 </h2>

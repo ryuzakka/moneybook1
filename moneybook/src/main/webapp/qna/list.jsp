@@ -15,11 +15,17 @@
 		margin-top:80px;
 		text-align:center;
 	}
+	#section table {
+		border-spacing:0px;
+	}
 	#section table tr:first-child {
 		text-align:center;
 	}
 	#section table tr {
 		text-align:left;
+	}
+	#section table tr td {
+		padding:7px;
 	}
 </style>
 <div id="section">
@@ -29,12 +35,12 @@
 	<table width="800" align="center" border="1">
 		<tr>
 			<td> 제 목 </td>
-			<td> 이 름 </td>
-			<td> 조회수 </td>
-			<td> 작성일 </td>
-			<td> grp </td>
+			<!-- <td> 이 름 </td> -->
+			<td width="50"> 조회수 </td>
+			<td width="110"> 작성일 </td>
+			<!-- <td> grp </td>
 			<td> depth </td>
-			<td> seq </td>
+			<td> seq </td> -->
 		</tr>
 		
 		<c:forEach items="${list}" var="qna">
@@ -45,12 +51,12 @@
 			</c:if>
 			<tr>
 				<td>${str}<a href="readnum.jsp?id=${qna.id}">${qna.title}</a></td>
-				<td>${qna.name}</td>
+				<%-- <td>${qna.name}</td> --%>
 				<td>${qna.readnum}</td>
 				<td>${qna.writeday}</td>
-				<td>${qna.grp}</td>
+				<%-- <td>${qna.grp}</td>
 				<td>${qna.depth}</td>
-				<td>${qna.seq}</td>
+				<td>${qna.seq}</td> --%>
 			</tr>
 		</c:forEach>
 	</table>

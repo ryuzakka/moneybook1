@@ -31,7 +31,7 @@
 		<input type="password" name="pwd" placeholder="비밀번호 입력" required>
 		<input type="submit" value="작성">
 	</p>
-	<a href="list.jsp"><input type="button" value="목록"></a>
+	<a href="list.jsp">목록으로 이동</a>
 </form>
 	
 </div>

@@ -5,8 +5,11 @@
 <c:if test="${userid != 'admin'}">
 	<c:redirect url="list.jsp" />
 </c:if>
-<% request.setCharacterEncoding("UTF-8"); %>
-
+<%@ page import="dao.QnaDao" %>
+<% 
+	QnaDao dao = new QnaDao();
+	dao.rewrite_form(request);
+%>
 
 <c:import url="../top.jsp" />
 <style>
@@ -25,19 +28,17 @@
 	<table width="400" align="center">
 		<tr>
 			<td> 제 목 </td>
-			<td> <input type="text" name="title" value="Re: <%=request.getParameter("content") %>" size="40" required> </td>
+			<td> <input type="text" name="title" value="Re: ${reply.title}" size="40" required> </td>
 		</tr>
 		<tr>
 			<td> 내 용 </td>
 			<td> <textarea cols="42" rows="8" name="content"></textarea> </td>
 		</tr>
 	</table>
-	<input type="hidden" name="grp" value="<%=request.getParameter("grp") %>">
-	<input type="hidden" name="depth" value="<%=request.getParameter("depth") %>">
-	<input type="hidden" name="seq" value="<%=request.getParameter("seq") %>">
-	<p>
-		<input type="submit" value="작성">
-	</p>
+	<input type="hidden" name="grp" value="${reply.grp}">
+	<input type="hidden" name="depth" value="${reply.depth}">
+	<input type="hidden" name="seq" value="${reply.seq}">
+	<p><input type="submit" value="작성"></p>
 	<a href="list.jsp"><input type="button" value="목록"></a>
 </form>
 	
